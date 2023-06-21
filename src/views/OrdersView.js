@@ -1,23 +1,40 @@
-import { Button, Card, List, message, DatePicker, Space } from "antd";
+import { Button, Card, DatePicker, Input, List, message, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import { Searchbar } from "../components/Searchbar";
 import { Order } from "../components/Order";
 import { deleteOrder, getOrder } from "../services/OrderService";
 import cookie from "react-cookies";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import isBetween from "dayjs/plugin/isBetween";
+import locale from "antd/es/date-picker/locale/zh_CN";
 
+const { Search } = Input;
 const { RangePicker } = DatePicker;
-const dateFormat = "YYYY-MM-DD";
-
+dayjs.extend(isBetween);
 export function OrdersView() {
   dayjs.extend(customParseFormat);
   const user = cookie.load("currentUser");
   const [orders, setOrders] = useState([]);
+  const [filteredOrdersByTime, setFilteredOrdersByTime] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [bookName, setBookName] = useState("");
+
+  useEffect(() => {
+    let newData = filteredOrdersByTime.filter((order) => {
+      for (const orderItem of order.orderItemSet) {
+        console.log(orderItem.book.title);
+        if (orderItem.book.title.toLowerCase().includes(bookName.toLowerCase()))
+          return true;
+      }
+      return false;
+    });
+    setFilteredOrders(newData);
+  }, [bookName, filteredOrdersByTime]);
   useEffect(() => {
     getOrder(user.id).then((res) => {
       setOrders(res);
-      console.log(res);
+      setFilteredOrdersByTime(res);
+      setFilteredOrders(res);
     });
   }, [user.id]);
 
@@ -27,24 +44,41 @@ export function OrdersView() {
     setOrders(newOrders);
     message.info("删除成功");
   };
+  const onFilter = (dates) => {
+    if (dates && dates.length === 2) {
+      const startDate = dates[0].startOf("day");
+      const endDate = dates[1].endOf("day");
 
+      const filtered = orders.filter((order) => {
+        const time = new Date(order.time);
+        const orderTime = dayjs(time);
+        return orderTime.isBetween(startDate, endDate);
+      });
+      setFilteredOrdersByTime(filtered);
+    } else {
+      setFilteredOrdersByTime(orders);
+    }
+  };
+
+  const onSearch = (str) => {
+    setBookName(str);
+  };
   return (
     orders !== null && (
       <div>
         <h1>我的订单</h1>
+        <h2>按日期筛选</h2>
         <Space direction="vertical" size={12}>
-          {/*<RangePicker*/}
-          {/*  defaultValue={[*/}
-          {/*    dayjs("2019-09-03", dateFormat),*/}
-          {/*    dayjs("2019-11-22", dateFormat),*/}
-          {/*  ]}*/}
-          {/*  disabled={[false, false]}*/}
-          {/*/>*/}
-          <DatePicker />
-          <RangePicker />
+          <RangePicker onChange={onFilter} locale={locale} />
         </Space>
-        <Searchbar message="输入书本信息" />
-        {orders.map((order) => {
+        <Search
+          placeholder="输入书本信息"
+          allowClear
+          enterButton="搜索"
+          size="large"
+          onSearch={(str) => onSearch(str)}
+        />
+        {filteredOrders.map((order) => {
           const orderTime = new Date(order.time);
           const options = {
             year: "numeric",

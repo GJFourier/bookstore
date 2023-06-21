@@ -92,7 +92,7 @@ export function CartView() {
       </Table>
       <Button
         type={"primary"}
-        style={{ marginLeft: "550px" }}
+        style={{ marginLeft: "400px" }}
         onClick={() => {
           addOrder(user.id).then((flag) => {
             if (flag === true) alert("购买成功！");
