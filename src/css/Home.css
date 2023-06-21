@@ -99,11 +99,11 @@
 .ant-card-meta-description{
     color: red !important;
 }
-table {
+.descriptions {
     border-collapse: collapse;
 }
 tr.book_detail:nth-child(even) {background-color: #f2f2f2;}
-table,tr,td {
+.descriptions .cart_table .book_detail {
     border: 1px solid gray;
     text-align: center;
 }

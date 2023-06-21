@@ -60,30 +60,30 @@ export function BooksDetailView() {
           </div>
           <div className="detail_group">
             <table className={"descriptions"} border="1">
-              <tbody>
+              <tbody className={"descriptions"}>
                 <tr className={"book_detail"}>
-                  <td>书名</td>
-                  <td>{data.title}</td>
+                  <td className={"td_descriptions"}>书名</td>
+                  <td className={"td_descriptions"}>{data.title}</td>
                 </tr>
                 <tr className={"book_detail"}>
-                  <td>作者</td>
-                  <td>{data.author}</td>
+                  <td className={"td_descriptions"}>作者</td>
+                  <td className={"td_descriptions"}>{data.author}</td>
                 </tr>
                 <tr className={"book_detail"}>
-                  <td>出版社</td>
-                  <td>{data.publisher}</td>
+                  <td className={"td_descriptions"}>出版社</td>
+                  <td className={"td_descriptions"}>{data.publisher}</td>
                 </tr>
                 <tr className={"book_isbn"}>
-                  <td>ISBN</td>
-                  <td>{data.isbn}</td>
+                  <td className={"td_descriptions"}>ISBN</td>
+                  <td className={"td_descriptions"}>{data.isbn}</td>
                 </tr>
                 <tr className={"book_detail"}>
-                  <td>价格</td>
+                  <td className={"td_descriptions"}>价格</td>
                   <td className={"price"}>{"￥" + data.price}</td>
                 </tr>
                 <tr>
-                  <td>库存</td>
-                  <td>{data.inventory}</td>
+                  <td className={"td_descriptions"}>库存</td>
+                  <td className={"td_descriptions"}>{data.inventory}</td>
                 </tr>
               </tbody>
             </table>
@@ -91,10 +91,10 @@ export function BooksDetailView() {
         </div>
 
         <div className={"book_detail_description"}>
-          <table border="1">
+          <table className={"descriptions"} border="1">
             <tr>
-              <td>简介</td>
-              <td style={{ textAlign: "left" }}>{data.description}</td>
+              <td className={"td_descriptions"}>简介</td>
+              <td className={"td_descriptions"} style={{ textAlign: "left" }}>{data.description}</td>
             </tr>
           </table>
         </div>
@@ -148,8 +148,8 @@ export function BooksDetailView() {
             <table className={"descriptions"} border="1">
               <tbody>
                 <tr className={"book_detail"}>
-                  <td>书名</td>
-                  <td>
+                  <td className={"td_descriptions"}>书名</td>
+                  <td className={"td_descriptions"}>
                     <Input
                       value={data.title}
                       onChange={(e) => {
@@ -162,8 +162,8 @@ export function BooksDetailView() {
                   </td>
                 </tr>
                 <tr className={"book_detail"}>
-                  <td>作者</td>
-                  <td>
+                  <td className={"td_descriptions"}>作者</td>
+                  <td className={"td_descriptions"}>
                     <Input
                       value={data.author}
                       onChange={(e) => {
@@ -176,8 +176,8 @@ export function BooksDetailView() {
                   </td>
                 </tr>
                 <tr className={"book_detail"}>
-                  <td>出版社</td>
-                  <td>
+                  <td className={"td_descriptions"}>出版社</td>
+                  <td className={"td_descriptions"}>
                     <Input
                       value={data.publisher}
                       onChange={(e) => {
@@ -190,8 +190,8 @@ export function BooksDetailView() {
                   </td>
                 </tr>
                 <tr className={"book_isbn"}>
-                  <td>ISBN</td>
-                  <td>
+                  <td className={"td_descriptions"}>ISBN</td>
+                  <td className={"td_descriptions"}>
                     <Input
                       value={data.isbn}
                       onChange={(e) => {
@@ -204,7 +204,7 @@ export function BooksDetailView() {
                   </td>
                 </tr>
                 <tr className={"book_detail"}>
-                  <td>价格</td>
+                  <td className={"td_descriptions"}>价格</td>
                   <td className={"price"}>
                     <InputNumber
                       value={data.price}
@@ -220,8 +220,8 @@ export function BooksDetailView() {
                   </td>
                 </tr>
                 <tr>
-                  <td>库存</td>
-                  <td>
+                  <td className={"td_descriptions"}>库存</td>
+                  <td className={"td_descriptions"}>
                     <InputNumber
                       value={data.inventory}
                       onChange={(value) => {
@@ -241,10 +241,10 @@ export function BooksDetailView() {
           </div>
         </div>
         <div className={"book_detail_description"}>
-          <table border="1">
+          <table className={"descriptions"} border="1">
             <tr>
-              <td>简介</td>
-              <td
+              <td className={"td_descriptions"}>简介</td>
+              <td className={"td_descriptions"}
                 style={{
                   textAlign: "left",
                   width: "500px",
