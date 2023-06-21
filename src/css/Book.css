@@ -1,0 +1,16 @@
+/*.book {*/
+/*    border-style: ridge;*/
+/*    width: 510px;*/
+/*    height: 700px;*/
+/*}*/
+/*.bookImg{*/
+/*    width: 500px;*/
+/*    height: 500px;*/
+/*}*/
+/*.bookName{*/
+/*    font: ;*/
+/*}*/
+.price {
+    color:red !important;
+    font-size: 18px !important;
+}
